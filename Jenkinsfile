@@ -1,19 +1,21 @@
 #!groovy
 
 def target = env.BRANCH_NAME.equals('master') ||
-    env.BRANCH_NAME.startsWith('release/') ? 'deploy' : 'verify'
+  env.BRANCH_NAME.startsWith('release/') ? 'deploy' : 'verify'
 
 pipeline {
-    options {
-        disableConcurrentBuilds()
-        buildDiscarder(logRotator(numToKeepStr: '3'))
-    }
+  agent any
 
-    stages {
-        stage('build') {
-            steps {
-                sh "mvn clean ${target}"
-            }
-        }
+  options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '3'))
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        sh "mvn clean ${target}"
+      }
     }
+  }
 }
