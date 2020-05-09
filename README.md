@@ -6,10 +6,12 @@ A simple project that does nothing but shows all the pieces used in real project
 
 * jUnit 5;
 * Mockito;
-* AssertJ
+* AssertJ.
 
 ## To add
 
-* JenkinsFile (Jenkins pipeline)
-* Concordion
-* Spring core
+* JenkinsFile (Jenkins pipeline);
+* Concordion;
+* Spring core;
+* Angular;
+* H2 DB.
