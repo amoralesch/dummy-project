@@ -4,7 +4,11 @@ def target = env.BRANCH_NAME.equals('master') ||
   env.BRANCH_NAME.startsWith('release/') ? 'deploy' : 'verify'
 
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3-jdk-13-alpine'
+    }
+  }
 
   options {
     disableConcurrentBuilds()
