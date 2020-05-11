@@ -16,10 +16,16 @@ pipeline {
   }
 
   stages {
-    stage('init') {
+    stage('Install dependencies') {
       steps {
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
+        script {
+          def dockerTool = tool name: 'myDocker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+          env.PATH = "${dockerHome}/bin:${env.PATH}"
+          withEnv(["DOCKER=${dockerTool}/bin"]) {
+              //stages
+              //here we can trigger: sh "sudo ${DOCKER}/docker ..."
+          }
+        }
       }
     }
 
